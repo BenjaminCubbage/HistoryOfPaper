@@ -1,29 +1,58 @@
 <template>
     <div class="node-event">
-        <time class="event-year" data-bc="true">
-            3000
-        </time>
-        <h3 class="event-title">
-            <div class="title-text">Oldest Scrap of Papyrus</div>
-        </h3>
-        <dropdown-caret class="event-caret" />
+        <div class="event-header" @click="isOpen=!isOpen">
+            <time class="header-year" data-bc="true">
+                3000
+            </time>
+            <h3 class="header-title" :hidden="isOpen">
+                <span class="title-text">Oldest Scrap of Papyrus</span>
+            </h3>
+            <dropdown-caret class="header-caret" :is-open="isOpen" />
+        </div>
+
+        <parchment-border class="event-content" :hidden="!isOpen">
+            <div class="content-container">
+                <span class="title-text">
+                    Oldest Scrap of Papyrus
+                </span>
+                <p class="paragraph-text">
+                    The oldest scrap of papyrus ever found was discovered at some point
+                </p>
+            </div>
+        </parchment-border>
     </div>
 </template>
 
 <script setup>
 import DropdownCaret from './svg/DropdownCaret.vue';
+import ParchmentBorder from './effects/ParchmentBorder.vue';
+
+const isOpen = defineModel('isOpen', {
+    required: true
+});
 </script>
 
 <style scoped>
 .node-event {
     display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    max-width: 500px;
+}
+
+.event-header {
+    display: flex;
     flex-direction: row;
     align-items: center;
 
     height: var(--sz-timeline-node);
+    
+    cursor: pointer;
+    user-select: none;
 }
 
-.event-year {
+.header-year {
     display: grid;
     grid-template-columns: auto auto;
     place-content: center;
@@ -48,7 +77,7 @@ import DropdownCaret from './svg/DropdownCaret.vue';
     &[data-ad=true]::after { content: 'AD'; }
 }
 
-.event-title {
+.header-title {
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
@@ -71,7 +100,7 @@ import DropdownCaret from './svg/DropdownCaret.vue';
     margin-block-start: 0.15em;
 }
 
-.event-caret {
+.header-caret {
     block-size: 0.65rem;
     margin-inline-start: 0.28rem;
 
@@ -80,5 +109,29 @@ import DropdownCaret from './svg/DropdownCaret.vue';
             var(--shadow-depth-xs)
             var(--shadow-depth-xs)
             var(--clr-beige-400));
+}
+
+.event-content {
+    margin-inline-start: -2rem;
+
+    filter: 
+        drop-shadow(
+            var(--shadow-depth-lg)
+            var(--shadow-depth-lg)
+            var(--clr-beige-400));
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    padding-inline: 2.05rem;
+    padding-block: 1rem;
+}
+
+.paragraph-text {
+    font-size: 1.3rem;
+    font-weight: 500;
 }
 </style>

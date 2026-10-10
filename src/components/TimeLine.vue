@@ -14,7 +14,7 @@
                     <node-arrow class="marker-arrow"></node-arrow>
                 </div>
 
-                <node-event />
+                <node-event class="node-event" />
             </li>
         </ul>
     </div>
@@ -31,8 +31,6 @@ import NodeEvent from './NodeEvent.vue';
     grid-template:
         "line nodes" 1fr /
          0    1fr;
-
-    height: 200px;
 
     & > .line  { grid-area: line; }
     & > .nodes { grid-area: nodes; }
@@ -105,5 +103,9 @@ import NodeEvent from './NodeEvent.vue';
             var(--shadow-depth-sm)
             var(--shadow-depth-sm)
             var(--clr-beige-400));
+}
+
+.node-event {
+    flex: 1 0 0;
 }
 </style>

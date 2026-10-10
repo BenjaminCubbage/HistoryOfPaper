@@ -18,11 +18,13 @@ import TimeLine from './TimeLine.vue';
     padding-block:  calc(var(--timeline-margin-blk) + var(--hero-overlap-range)) calc(var(--timeline-margin-blk) + 1rem);
     padding-inline: calc(var(--timeline-margin-inl) + 2.5rem);
 
-    background: url("@/assets/img/parchment-bg.svg") center / 100% repeat-y;
+    background: url("@/assets/img/parchment-bg.svg") top / 100% repeat-y;
 
     width: 1000px;
     margin: 0;
     align-self: center;
+
+    min-height: 1700px;
     
     @media (width < 1100px) {
         width: calc(100% - 1.6rem);

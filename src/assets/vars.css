@@ -5,13 +5,13 @@
     --clr-beige-200: #fcf0de;
     --clr-beige-300: #f4e1c3;
     --clr-beige-400: #efce9a;
-    --clr-beige-500: #c1904c;
+    --clr-beige-500: #d7a660;
     --clr-beige-600: #875d30;
 
     --hero-overlap-range: 90px;
     --shadow-depth-xs: 3px;
     --shadow-depth-sm: 4px;
-    --shadow-depth-lg: 5px;
+    --shadow-depth-lg: 8px;
 
     --wd-timeline-line: 5px;
     --sz-timeline-node: 23px;
