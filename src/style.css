@@ -1,0 +1,6 @@
+@import "assets/fonts.css" layer(fonts);
+@import "assets/reset.css" layer(reset);
+@import "assets/vars.css" layer(vars);
+@import "assets/base.css" layer(base);
+
+@layer fonts, reset, vars, base;

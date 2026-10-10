@@ -1,0 +1,18 @@
+:root {
+    --clr-red-100: #af1717;
+
+    --clr-beige-100: #fff7f0;
+    --clr-beige-200: #fcf0de;
+    --clr-beige-300: #f4e1c3;
+    --clr-beige-400: #efce9a;
+    --clr-beige-500: #c1904c;
+    --clr-beige-600: #875d30;
+
+    --hero-overlap-range: 90px;
+    --shadow-depth-xs: 3px;
+    --shadow-depth-sm: 4px;
+    --shadow-depth-lg: 5px;
+
+    --wd-timeline-line: 5px;
+    --sz-timeline-node: 23px;
+}
