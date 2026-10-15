@@ -1,28 +1,28 @@
 <template>
     <div class="timeline">
         <div class="line" area-hidden="true"></div>
+
         <ul class="nodes">
-            <li class="node">
-                <div class="node-marker" aria-hidden="true">
-                    <node-arrow class="marker-arrow"></node-arrow>
-                </div>
-
-                <node-event />
-            </li>
-            <li class="node">
-                <div class="node-marker" aria-hidden="true">
-                    <node-arrow class="marker-arrow"></node-arrow>
-                </div>
-
-                <node-event class="node-event" />
-            </li>
+            <time-line-node />
+            <time-line-aside />
+            <time-line-node />
+            <time-line-aside />
+            <time-line-aside />
+            <time-line-node />
+            <time-line-aside />
+            <time-line-aside />
+            <time-line-aside />
+            <time-line-node />
+            <time-line-aside />
+            <time-line-aside />
+            <time-line-aside />
         </ul>
     </div>
 </template>
 
 <script setup>
-import NodeArrow from './svg/NodeArrow.vue';
-import NodeEvent from './NodeEvent.vue';
+import TimeLineNode from './TimeLineNode.vue';
+import TimeLineAside from './TimeLineAside.vue';
 </script>
 
 <style scoped>
@@ -30,7 +30,7 @@ import NodeEvent from './NodeEvent.vue';
     display: grid;
     grid-template:
         "line nodes" 1fr /
-         0    1fr;
+         0    minmax(0, 1fr);
 
     & > .line  { grid-area: line; }
     & > .nodes { grid-area: nodes; }
@@ -56,56 +56,5 @@ import NodeEvent from './NodeEvent.vue';
     display: flex;
     flex-flow: column;
     gap: 2rem;
-}
-
-.node {
-    display: flex;
-    gap: 0.3rem;
-}
-
-.node-marker {
-    position: relative;
-
-    display: grid;
-    place-content: center;
-
-    height: var(--sz-timeline-node);
-
-    &::before,
-    &::after {
-        content: '';
-        position: absolute;
-        z-index: 1;
-
-        inset-inline-start: calc(-0.5 * var(--sz-timeline-node));
-
-        width: var(--sz-timeline-node);
-        height: var(--sz-timeline-node);
-
-        background: var(--clr-red-100);
-
-        rotate: 45deg;
-    }
-
-    &::after {
-        z-index: -1;
-        background: var(--clr-beige-400);
-        translate: var(--shadow-depth-sm) var(--shadow-depth-sm);
-    }
-}
-
-.marker-arrow {
-    block-size: 9px;
-    margin-inline-start: 1.2rem;
-    
-    filter: 
-        drop-shadow(
-            var(--shadow-depth-sm)
-            var(--shadow-depth-sm)
-            var(--clr-beige-400));
-}
-
-.node-event {
-    flex: 1 0 0;
 }
 </style>

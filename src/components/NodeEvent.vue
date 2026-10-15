@@ -4,19 +4,21 @@
             <time class="header-year" data-bc="true">
                 3000
             </time>
-            <h3 class="header-title" :hidden="isOpen">
-                <span class="title-text">Oldest Scrap of Papyrus</span>
-            </h3>
-            <dropdown-caret class="header-caret" :is-open="isOpen" />
         </div>
+        <h3 class="header-title" :hidden="isOpen" @click="isOpen=!isOpen">
+            Fall of the Roman <span style="display: inline-block;">Empire&nbsp;<dropdown-caret class="header-caret" /></span>
+        </h3>
 
         <parchment-border class="event-content" :hidden="!isOpen">
             <div class="content-container">
-                <span class="title-text">
-                    Oldest Scrap of Papyrus
+                <span class="header-title" @click="isOpen=!isOpen">
+                    Fall of the Roman <span style="display: inline-block;">Empire&nbsp;<dropdown-caret class="header-caret" is-open /></span>
                 </span>
                 <p class="paragraph-text">
-                    The oldest scrap of papyrus ever found was discovered at some point
+                    The oldest scrap of papyrus was discovered in 1979. That's what they say, at least.
+                </p>
+                <p class="paragraph-text">
+                    Who discovered it? It's not entirely clear. This fact is incorrect and just for show.
                 </p>
             </div>
         </parchment-border>
@@ -24,42 +26,42 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 import DropdownCaret from './svg/DropdownCaret.vue';
 import ParchmentBorder from './effects/ParchmentBorder.vue';
 
-const isOpen = defineModel('isOpen', {
-    required: true
-});
+const isOpen = ref(false);
 </script>
 
 <style scoped>
 .node-event {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
 
-    max-width: 500px;
+    min-width: 0;
+    max-width: 600px;
+    line-height: 1.1;
+
+    margin-block-start: 0.03rem;
 }
 
 .event-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    height: var(--sz-timeline-node);
-    
     cursor: pointer;
     user-select: none;
+    vertical-align: middle;
+
+    padding-block-end: 0.2rem;
 }
 
 .header-year {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: auto auto;
     place-content: center;
+    vertical-align: middle;
 
-    font-size: 1.7rem;
+    font-size: 1.4rem;
     font-weight: 550;
-    margin-block-start: 0.15em;
     
     filter: 
         drop-shadow(
@@ -73,36 +75,33 @@ const isOpen = defineModel('isOpen', {
         align-self: center;
     }
 
-    &[data-bc=true]::after { content: 'BCE'; }
-    &[data-ad=true]::after { content: 'AD'; }
-}
-
-.header-title {
-    display: grid;
-    grid-template-columns: auto auto;
-    align-items: center;
-
-    &::before {
-        content: '';
-
-        display: inline-block;
-        width: 1rem;
-        height: 1.5px;
-        background: black;
-
-        margin-inline: 0.4rem;
+    &[data-bc=true]::after { content: 'BCE —'; }
+    &[data-ad=true]::after { content: 'AD —'; }
+    
+    @media (width < 800px) {
+        font-size: 1.5rem;
     }
 }
 
-.title-text {
+.header-title {
+    display: inline;
+    vertical-align: middle;
+    cursor: pointer;
+
     font-weight: 730;
-    font-size: 1.55rem;
-    margin-block-start: 0.15em;
+    font-size: 1.4rem;
+    vertical-align: middle;
+
+    @media (width < 800px) {
+        font-size: 1.3rem;
+    }
 }
 
 .header-caret {
     block-size: 0.65rem;
-    margin-inline-start: 0.28rem;
+    margin-inline-start: 0.1rem;
+
+    translate: 0 -0.1rem;
 
     filter: 
         drop-shadow(
@@ -112,13 +111,27 @@ const isOpen = defineModel('isOpen', {
 }
 
 .event-content {
-    margin-inline-start: -2rem;
+    margin-inline-start: -1.6rem;
+    margin-block-start: -0.6rem;
 
     filter: 
         drop-shadow(
             var(--shadow-depth-lg)
             var(--shadow-depth-lg)
             var(--clr-beige-400));
+
+    scale: 1;
+    transition: opacity 200ms ease;
+    transform-origin: top left;
+
+    /*
+        Prevent obfuscating date toggle button
+    */
+    pointer-events: none;
+    & .header-title,
+    & .paragraph-text {
+        pointer-events: all;
+    }
 }
 
 .content-container {
@@ -126,12 +139,17 @@ const isOpen = defineModel('isOpen', {
     flex-direction: column;
     gap: 0.6rem;
 
-    padding-inline: 2.05rem;
-    padding-block: 1rem;
+    padding-inline: 1.6rem;
+    padding-block: 0.6em;
 }
 
 .paragraph-text {
-    font-size: 1.3rem;
-    font-weight: 500;
+    font-size: 1.2rem;
+    font-weight: 520;
+    line-height: 1.3;
+    
+    @media (width < 800px) {
+        font-size: 1.2rem;
+    }
 }
 </style>

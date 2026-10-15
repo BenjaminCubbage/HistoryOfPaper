@@ -16,11 +16,11 @@ import TimeLine from './TimeLine.vue';
     isolation: isolate;
 
     padding-block:  calc(var(--timeline-margin-blk) + var(--hero-overlap-range)) calc(var(--timeline-margin-blk) + 1rem);
-    padding-inline: calc(var(--timeline-margin-inl) + 2.5rem);
+    padding-inline: calc(var(--timeline-margin-inl) + var(--sz-timeline-node));
 
     background: url("@/assets/img/parchment-bg.svg") top / 100% repeat-y;
 
-    width: 1000px;
+    width: 700px;
     margin: 0;
     align-self: center;
 
@@ -35,6 +35,9 @@ import TimeLine from './TimeLine.vue';
         width: 100%;
         margin: 0;
         background: var(--clr-beige-300);
+
+        --timeline-margin-inl: 0rem;
+        --timeline-margin-blk: 1rem;
     }
 }
 </style>

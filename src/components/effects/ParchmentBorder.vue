@@ -35,7 +35,7 @@ watch([inline, block], async () => {
         return;
 
     const passes = [
-        { jaggedFrequency: 15,  jaggedAmplitude: 3 } 
+        { jaggedFrequency: 12,  jaggedAmplitude: 3 } 
     ];
 
 

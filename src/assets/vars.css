@@ -7,12 +7,14 @@
     --clr-beige-400: #efce9a;
     --clr-beige-500: #d7a660;
     --clr-beige-600: #875d30;
+    --clr-beige-700: #321f0b;
 
     --hero-overlap-range: 90px;
-    --shadow-depth-xs: 3px;
-    --shadow-depth-sm: 4px;
-    --shadow-depth-lg: 8px;
+    --shadow-depth-xs: 2px;
+    --shadow-depth-sm: 3px;
+    --shadow-depth-lg: 5px;
 
     --wd-timeline-line: 5px;
-    --sz-timeline-node: 23px;
+    --sz-timeline-node: 21px;
+    --sz-timeline-aside: 16px;
 }
