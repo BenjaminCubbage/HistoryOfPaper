@@ -18,17 +18,11 @@
 }
 
 .aside-date {
-    filter: 
-        drop-shadow(
-            var(--shadow-depth-xs)
-            var(--shadow-depth-xs)
-            var(--clr-beige-400));
-
     display: inline-block;
     align-items: center;
 
     font-weight: 620;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-block-start: 0.1em;
     padding-block-end: 0.1em;
 

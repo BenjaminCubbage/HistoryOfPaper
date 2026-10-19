@@ -5,15 +5,17 @@
                 3000
             </time>
         </div>
-        <h3 class="header-title" :hidden="isOpen" @click="isOpen=!isOpen">
-            Fall of the Roman <span style="display: inline-block;">Empire&nbsp;<dropdown-caret class="header-caret" /></span>
+        <h3 class="header-title" @click="isOpen=!isOpen">
+            Fall of the Roman <span style="display: inline-block;">Empire&nbsp;<dropdown-caret class="header-caret" :is-open="isOpen" /></span>
         </h3>
 
-        <parchment-border class="event-content" :hidden="!isOpen">
+        <parchment-border 
+            class="event-content" 
+            :hidden="!isOpen" 
+            :roughen-settings="borderRoughenSettings" 
+            :tear-settings="borderTearSettings"
+            background="var(--clr-beige-100)">
             <div class="content-container">
-                <span class="header-title" @click="isOpen=!isOpen">
-                    Fall of the Roman <span style="display: inline-block;">Empire&nbsp;<dropdown-caret class="header-caret" is-open /></span>
-                </span>
                 <p class="paragraph-text">
                     The oldest scrap of papyrus was discovered in 1979. That's what they say, at least.
                 </p>
@@ -32,6 +34,17 @@ import DropdownCaret from './svg/DropdownCaret.vue';
 import ParchmentBorder from './effects/ParchmentBorder.vue';
 
 const isOpen = ref(false);
+
+const borderRoughenSettings = { 
+    jaggedFrequency: 15,
+    jaggedAmplitudeX: 6,
+    jaggedAmplitudeY: 1 };
+
+const borderTearSettings = {
+    jaggedAmplitudeX: 10,
+    jaggedAmplitudeY: 2,
+    tearWidth: 10,
+    tearChance: 0.2 };
 </script>
 
 <style scoped>
@@ -43,7 +56,7 @@ const isOpen = ref(false);
     max-width: 600px;
     line-height: 1.1;
 
-    margin-block-start: 0.03rem;
+    margin-block-start: 0.1rem;
 }
 
 .event-header {
@@ -60,22 +73,18 @@ const isOpen = ref(false);
     place-content: center;
     vertical-align: middle;
 
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 550;
-    
-    filter: 
-        drop-shadow(
-            var(--shadow-depth-sm)
-            var(--shadow-depth-sm)
-            var(--clr-beige-400));
 
     &::after {
-        margin-inline-start: 0.3rem;
+        margin-inline-start: 0.2rem;
+        margin-block-end: 0.02em;
         font-size: 0.7em;
+        font-weight: 650;
         align-self: center;
     }
 
-    &[data-bc=true]::after { content: 'BCE —'; }
+    &[data-bc=true]::after { content: 'BCE ⸺'; }
     &[data-ad=true]::after { content: 'AD —'; }
     
     @media (width < 800px) {
@@ -92,6 +101,8 @@ const isOpen = ref(false);
     font-size: 1.4rem;
     vertical-align: middle;
 
+    user-select: none;
+
     @media (width < 800px) {
         font-size: 1.3rem;
     }
@@ -102,27 +113,18 @@ const isOpen = ref(false);
     margin-inline-start: 0.1rem;
 
     translate: 0 -0.1rem;
-
-    filter: 
-        drop-shadow(
-            var(--shadow-depth-xs)
-            var(--shadow-depth-xs)
-            var(--clr-beige-400));
 }
 
 .event-content {
-    margin-inline-start: -1.6rem;
-    margin-block-start: -0.6rem;
-
-    filter: 
-        drop-shadow(
-            var(--shadow-depth-lg)
-            var(--shadow-depth-lg)
-            var(--clr-beige-400));
+    margin-block-start: 0.2rem;
+    margin-inline-start: -1.4rem;
 
     scale: 1;
     transition: opacity 200ms ease;
     transform-origin: top left;
+
+    filter:
+        drop-shadow(0.4rem 0.4rem var(--clr-beige-300));
 
     /*
         Prevent obfuscating date toggle button
@@ -139,12 +141,23 @@ const isOpen = ref(false);
     flex-direction: column;
     gap: 0.6rem;
 
-    padding-inline: 1.6rem;
-    padding-block: 0.6em;
+    padding-inline: 1.45rem;
+    padding-block: 1rem 0.8em;
+
+    &::after {
+        content: '';
+        display: inline-block;
+        inline-size: 1.6rem;
+        block-size: 5px;
+        background: var(--clr-beige-500);
+        margin-block-end: 0.2rem;
+
+        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    }
 }
 
 .paragraph-text {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 520;
     line-height: 1.3;
     

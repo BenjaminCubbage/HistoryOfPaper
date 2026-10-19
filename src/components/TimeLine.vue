@@ -4,18 +4,11 @@
 
         <ul class="nodes">
             <time-line-node />
-            <time-line-aside />
             <time-line-node />
-            <time-line-aside />
-            <time-line-aside />
             <time-line-node />
-            <time-line-aside />
-            <time-line-aside />
-            <time-line-aside />
             <time-line-node />
-            <time-line-aside />
-            <time-line-aside />
-            <time-line-aside />
+            <time-line-node />
+            <time-line-node />
         </ul>
     </div>
 </template>
@@ -44,12 +37,6 @@ import TimeLineAside from './TimeLineAside.vue';
     margin-inline-start: calc(-0.5 * var(--wd-timeline-line));
     block-size: 100%;
     background: var(--clr-beige-500);
-
-    filter: 
-        drop-shadow(
-            var(--shadow-depth-sm)
-            var(--shadow-depth-sm)
-            var(--clr-beige-400));
 }
 
 .nodes {

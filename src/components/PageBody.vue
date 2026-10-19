@@ -1,31 +1,45 @@
 <template>
-    <section class="page-body">
-        <time-line />
-    </section>
+    <parchment-border 
+        class="page-body" 
+        background="var(--clr-beige-200)"
+        :roughen-settings="borderRoughenSettings" 
+        :tear-settings="borderTearSettings">
+        <section class="page-section">
+            <time-line />
+        </section>
+    </parchment-border>
 </template>
 
 <script setup>
 import TimeLine from './TimeLine.vue';
+import ParchmentBorder from './effects/ParchmentBorder.vue';
+
+const borderRoughenSettings = { 
+    jaggedFrequency: 15,
+    jaggedAmplitudeX: 7,
+    jaggedAmplitudeY: 2 };
+
+const borderTearSettings = {
+    jaggedAmplitudeX: 25,
+    jaggedAmplitudeY: 2,
+    tearWidth: 10,
+    tearChance: 0.2,
+    jaggedFrequency: 30 };
 </script>
 
 <style scoped>
 .page-body {
-    --timeline-margin-inl: 4rem;
-    --timeline-margin-blk: 2rem;
+    width: 750px;
+}
+
+.page-section {
+    padding-block-start: var(--hero-overlap-range);
+    padding-inline: 3rem;
 
     isolation: isolate;
 
-    padding-block:  calc(var(--timeline-margin-blk) + var(--hero-overlap-range)) calc(var(--timeline-margin-blk) + 1rem);
-    padding-inline: calc(var(--timeline-margin-inl) + var(--sz-timeline-node));
-
-    background: url("@/assets/img/parchment-bg.svg") top / 100% repeat-y;
-
-    width: 700px;
     margin: 0;
-    align-self: center;
 
-    min-height: 1700px;
-    
     @media (width < 1100px) {
         width: calc(100% - 1.6rem);
         align-self: stretch;

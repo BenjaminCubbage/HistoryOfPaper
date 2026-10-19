@@ -1,8 +1,8 @@
 <template>
     <li class="aside">
         <div class="aside-marker" aria-hidden="true">
-            <aside-arrow-sm class="marker-arrow marker-arrow--sm" />
-            <aside-arrow-lg class="marker-arrow marker-arrow--lg" />
+            <node-arrow-sm class="marker-arrow marker-arrow--sm" />
+            <node-arrow-lg class="marker-arrow marker-arrow--lg" />
         </div>
 
         <aside-event />
@@ -10,8 +10,8 @@
 </template>
 
 <script setup>
-import AsideArrowLg from './svg/AsideArrowLg.vue';
-import AsideArrowSm from './svg/AsideArrowSm.vue';
+import NodeArrowLg from './svg/NodeArrowLg.vue';
+import NodeArrowSm from './svg/NodeArrowSm.vue';
 import AsideEvent from './AsideEvent.vue';
 </script>
 
@@ -40,7 +40,7 @@ import AsideEvent from './AsideEvent.vue';
         width: var(--sz-timeline-aside);
         height: var(--sz-timeline-aside);
 
-        background: var(--clr-beige-400);
+        background: var(--clr-beige-200);
         border: 0.3rem solid var(--clr-red-100);
 
         rotate: 45deg;
@@ -57,12 +57,6 @@ import AsideEvent from './AsideEvent.vue';
 .marker-arrow {
     block-size: 9px;
     margin-inline-start: 1.2rem;
-
-    filter: 
-        drop-shadow(
-            var(--shadow-depth-sm)
-            var(--shadow-depth-sm)
-            var(--clr-beige-400));
 
     &.marker-arrow--lg {
         @media (width < 800px) {

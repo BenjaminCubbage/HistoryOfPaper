@@ -1,8 +1,9 @@
 <template>
     <main class="app">
-        <header>
+        <header class="page-header">
             <page-hero class="page-hero"></page-hero>
         </header>
+        <side-bar class="side-bar"></side-bar>
         <page-body class="page-body"></page-body>
     </main>
 </template>
@@ -10,14 +11,20 @@
 <script setup>
 import PageHero from './components/PageHero.vue';
 import PageBody from './components/PageBody.vue';
+import SideBar from './components/SideBar.vue';
 </script>
 
 <style scoped>
 .app {
     isolation: isolate;
 
-    display: flex;
-    flex-flow: column;
+    display: grid;
+    grid-template:
+        "hero hero hero" auto
+        "sidebar body ." auto /
+         1fr auto 1fr;
+
+    place-items: start stretch;
 
     background: var(--clr-beige-100);
 
@@ -38,11 +45,12 @@ import PageBody from './components/PageBody.vue';
     }
     
     header { z-index: 2;}
-    .page-hero { align-self: stretch; z-index: 2; }
-    .page-body { align-self: center;  z-index: 1; }
+    .page-header { grid-area: hero; z-index: 2; }
+    .page-body   { grid-area: body; z-index: 1; }
+    .side-bar    { grid-area: sidebar; }
+}
 
-    .page-hero { 
-        margin-bottom: calc(-1 * var(--hero-overlap-range));
-    }
+.page-body { 
+    margin-top: calc(-1 * var(--hero-overlap-range));
 }
 </style>

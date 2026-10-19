@@ -55,12 +55,6 @@ import NodeEvent from './NodeEvent.vue';
 .marker-arrow {
     block-size: 9px;
     margin-inline-start: 1.2rem;
-
-    filter: 
-        drop-shadow(
-            var(--shadow-depth-sm)
-            var(--shadow-depth-sm)
-            var(--clr-beige-400));
             
     &.marker-arrow--lg {
         @media (width < 800px) {

@@ -18,8 +18,26 @@ import {
 } from 'vue';
 
 import { useElementDimensions } from '../../composables/useElementDimensions';
-import { roughenPath } from '@/core/svg.js';
-import { createParchmentBasis } from '@/core/svg';
+import { 
+    roughenPath,
+    tearPath,
+    createRectangularBasis 
+} from '@/core/svg.js';
+
+const props = defineProps({
+    roughenSettings: {
+        type: Object,
+        default: undefined
+    },
+    tearSettings: {
+        type: Object,
+        default: undefined
+    },
+    background: {
+        type: String,
+        default: 'white'
+    }
+});
 
 const parchmentSVG = useTemplateRef('parchmentSVG');
 
@@ -34,20 +52,14 @@ watch([inline, block], async () => {
     if (!parchmentSVG.value)
         return;
 
-    const passes = [
-        { jaggedFrequency: 12,  jaggedAmplitude: 3 } 
-    ];
-
-
-    let path = createParchmentBasis(inline.value, block.value);
-
-    for (const settings of passes)
-        path = roughenPath(path, settings);
+    let path = createRectangularBasis(inline.value, block.value);
+    path = roughenPath(path, props.roughenSettings);
+    path = tearPath(path, props.tearSettings);
 
     if (parchmentSVG.value.children[0])
         parchmentSVG.value.removeChild(parchmentSVG.value.children[0]);
 
-    path.setAttribute('fill', 'white');
+    path.setAttribute('style', `fill: ${props.background}`);
     parchmentSVG.value.appendChild(path);
 });
 </script>
