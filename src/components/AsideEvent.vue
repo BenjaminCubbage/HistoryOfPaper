@@ -14,30 +14,38 @@
 .aside-event {
     display: flex;
     flex-direction: column;
-    margin-block-start: -0.1rem;
+    align-items: start;
+    margin-block-start: 0.05rem;
+    gap: 0.15rem;
 }
 
+
 .aside-date {
-    display: inline-block;
-    align-items: center;
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    vertical-align: middle;
 
-    font-weight: 620;
-    font-size: 1.2rem;
-    margin-block-start: 0.1em;
-    padding-block-end: 0.1em;
+    font-size: 1.05rem;
+    font-weight: 550;
+    letter-spacing: 0.04em;
 
-    &[data-bc="true"]::after {
-        content: 'BCE —';
-        font-size: 0.8em;
-        vertical-align: middle;
+    &::after {
+        margin-inline-start: 0.2rem;
+        font-size: 0.7em;
+        font-weight: 650;
+        align-self: center;
+        margin-block-start: -0.25em;
     }
+
+    &[data-bc=true]::after { content: 'BCE ⸺'; }
+    &[data-ad=true]::after { content: 'AD ⸺'; }
 }
 
 .aside-content {
     display: inline;
     align-items: center;
 
-    font-weight: 550;
+    font-weight: 650;
     font-size: 1.2rem;
 }
 </style>

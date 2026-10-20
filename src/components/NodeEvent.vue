@@ -9,10 +9,10 @@
             Fall of the Roman <span style="display: inline-block;">Empire&nbsp;<dropdown-caret class="header-caret" :is-open="isOpen" /></span>
         </h3>
 
-        <parchment-border 
-            class="event-content" 
-            :hidden="!isOpen" 
-            :roughen-settings="borderRoughenSettings" 
+        <parchment-border
+            class="event-content"
+            :hidden="!isOpen"
+            :roughen-settings="borderRoughenSettings"
             :tear-settings="borderTearSettings"
             background="var(--clr-beige-100)">
             <div class="content-container">
@@ -56,7 +56,7 @@ const borderTearSettings = {
     max-width: 600px;
     line-height: 1.1;
 
-    margin-block-start: 0.1rem;
+    margin-block-start: 0.15rem;
 }
 
 .event-header {
@@ -73,8 +73,9 @@ const borderTearSettings = {
     place-content: center;
     vertical-align: middle;
 
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 550;
+    letter-spacing: 0.04em;
 
     &::after {
         margin-inline-start: 0.2rem;
@@ -85,11 +86,7 @@ const borderTearSettings = {
     }
 
     &[data-bc=true]::after { content: 'BCE ⸺'; }
-    &[data-ad=true]::after { content: 'AD —'; }
-    
-    @media (width < 800px) {
-        font-size: 1.5rem;
-    }
+    &[data-ad=true]::after { content: 'AD ⸺'; }
 }
 
 .header-title {
@@ -97,22 +94,19 @@ const borderTearSettings = {
     vertical-align: middle;
     cursor: pointer;
 
-    font-weight: 730;
+    font-weight: 675;
     font-size: 1.4rem;
     vertical-align: middle;
 
     user-select: none;
-
-    @media (width < 800px) {
-        font-size: 1.3rem;
-    }
 }
 
 .header-caret {
     block-size: 0.65rem;
     margin-inline-start: 0.1rem;
 
-    translate: 0 -0.1rem;
+    translate: 0 -0.05rem;
+    scale: 0.85;
 }
 
 .event-content {
@@ -122,9 +116,6 @@ const borderTearSettings = {
     scale: 1;
     transition: opacity 200ms ease;
     transform-origin: top left;
-
-    filter:
-        drop-shadow(0.4rem 0.4rem var(--clr-beige-300));
 
     /*
         Prevent obfuscating date toggle button
@@ -148,8 +139,8 @@ const borderTearSettings = {
         content: '';
         display: inline-block;
         inline-size: 1.6rem;
-        block-size: 5px;
-        background: var(--clr-beige-500);
+        block-size: 4px;
+        background: black;
         margin-block-end: 0.2rem;
 
         clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
@@ -160,9 +151,5 @@ const borderTearSettings = {
     font-size: 1.25rem;
     font-weight: 520;
     line-height: 1.3;
-    
-    @media (width < 800px) {
-        font-size: 1.2rem;
-    }
 }
 </style>

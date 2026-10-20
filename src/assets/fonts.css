@@ -1,4 +1,14 @@
 @font-face {
     font-family: Newsreader;
-    src: url("/public/Newsreader.woff2");
+    font-display: swap;
+    src: url('/public/Newsreader.ttf');
+}
+
+@font-face {
+    font-family: "Newsreader Fallback";
+    src: local("Times New Roman");
+    size-adjust: 105.4769%;
+    ascent-override: 69.6835%;
+    descent-override: 25.124%;
+    line-gap-override: 0%;
 }

@@ -3,8 +3,15 @@
         <header class="page-header">
             <page-hero class="page-hero"></page-hero>
         </header>
-        <side-bar class="side-bar"></side-bar>
-        <page-body class="page-body"></page-body>
+        <div class="page-layout">
+            <div class="left">
+                <side-bar class="side-bar"></side-bar>
+            </div>
+            <div class="center">
+                <page-body class="page-body"></page-body>
+            </div>
+            <div class="right"></div>
+        </div>
     </main>
 </template>
 
@@ -18,13 +25,8 @@ import SideBar from './components/SideBar.vue';
 .app {
     isolation: isolate;
 
-    display: grid;
-    grid-template:
-        "hero hero hero" auto
-        "sidebar body ." auto /
-         1fr auto 1fr;
-
-    place-items: start stretch;
+    display: flex;
+    flex-direction: column;
 
     background: var(--clr-beige-100);
 
@@ -45,9 +47,30 @@ import SideBar from './components/SideBar.vue';
     }
     
     header { z-index: 2;}
-    .page-header { grid-area: hero; z-index: 2; }
-    .page-body   { grid-area: body; z-index: 1; }
-    .side-bar    { grid-area: sidebar; }
+}
+
+.page-layout {
+    display: flex;
+
+    & > .left { 
+        flex: 1 0 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: end;
+
+        & > .side-bar {
+            margin-inline: 2rem;
+        }
+    }
+
+    & > .center { 
+        flex: 0 0 0; 
+    }
+
+    & > .right { 
+        flex: 1 1 0; 
+    }
 }
 
 .page-body { 

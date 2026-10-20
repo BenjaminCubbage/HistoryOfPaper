@@ -1,32 +1,54 @@
 <template>
-    <div class="timeline">
-        <div class="line" area-hidden="true"></div>
+    <section class="timeline" aria-label="timeline">
+        <div class="timeline-era">
+            <h3 class="header">
+                <time-line-era-header era="medieval" height="100%" />
+            </h3>
 
-        <ul class="nodes">
-            <time-line-node />
-            <time-line-node />
-            <time-line-node />
-            <time-line-node />
-            <time-line-node />
-            <time-line-node />
-        </ul>
-    </div>
+            <div class="line" area-hidden="true"></div>
+
+            <ul class="nodes">
+                <time-line-node />
+                <time-line-aside />
+                <time-line-aside />
+                <time-line-aside />
+                <time-line-node />
+                <time-line-node />
+                <time-line-node />
+                <time-line-node />
+                <time-line-node />
+                <time-line-node />
+                <time-line-aside />
+                <time-line-aside />
+                <time-line-aside />
+                <time-line-node />
+                <time-line-node />
+                <time-line-node />
+                <time-line-node />
+                <time-line-node />
+                <time-line-node />
+            </ul>
+        </div>
+    </section>
 </template>
 
 <script setup>
 import TimeLineNode from './TimeLineNode.vue';
 import TimeLineAside from './TimeLineAside.vue';
+import TimeLineEraHeader from './svg/TimeLineEraHeader.vue';
 </script>
 
 <style scoped>
-.timeline {
+.timeline-era {
     display: grid;
     grid-template:
-        "line nodes" 1fr /
-         0    minmax(0, 1fr);
+        "header header" auto
+        "line   nodes"  1fr /
+         0      minmax(0, 1fr);
 
-    & > .line  { grid-area: line; }
-    & > .nodes { grid-area: nodes; }
+    & > .header { grid-area: header; }
+    & > .line   { grid-area: line; }
+    & > .nodes  { grid-area: nodes; }
 }
 
 .line {
@@ -39,9 +61,16 @@ import TimeLineAside from './TimeLineAside.vue';
     background: var(--clr-beige-500);
 }
 
+.header {
+    height: 48px;
+    margin-block: 0.6rem 1.3rem;
+
+    margin-inline-start: -1rem;
+}
+
 .nodes {
     display: flex;
     flex-flow: column;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 </style>

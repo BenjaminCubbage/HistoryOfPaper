@@ -1,9 +1,9 @@
-[hidden] {
+[hidden]:not([hidden='false']) {
     display: none !important;
 }
 
 body {
-    font-family: Newsreader, serif;
+    font-family: Newsreader, 'Newsreader Fallback', 'Times New Roman', Times, serif;
 }
 
 svg {
