@@ -3,12 +3,16 @@
         <header class="page-header">
             <page-hero class="page-hero"></page-hero>
         </header>
+
         <div class="page-layout">
             <div class="left">
-                <side-bar class="side-bar"></side-bar>
+                <side-bar 
+                    class="side-bar" 
+                    :visible-eras="pageBodyEl?.visibleEras"
+                    @navigate-to-era="pageBodyEl?.navigateToEra"></side-bar>
             </div>
             <div class="center">
-                <page-body class="page-body"></page-body>
+                <page-body ref="pageBody" class="page-body"></page-body>
             </div>
             <div class="right"></div>
         </div>
@@ -16,9 +20,14 @@
 </template>
 
 <script setup>
+import { 
+    useTemplateRef
+} from 'vue';
 import PageHero from './components/PageHero.vue';
 import PageBody from './components/PageBody.vue';
 import SideBar from './components/SideBar.vue';
+
+const pageBodyEl = useTemplateRef('pageBody');
 </script>
 
 <style scoped>
